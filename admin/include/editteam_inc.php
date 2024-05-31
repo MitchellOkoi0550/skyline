@@ -7,10 +7,13 @@ function fetchRecordById($record_id) {
     global $host, $dbname, $username, $password;
 
     try {
-        $dsn = "mysql:host=localhost;dbname=skyline";
-        $dbusername = "root";
-        $dbpassword = "";
-        $pdo = new PDO($dsn, $dbusername, $dbpassword);
+        $dbHOST = $_ENV['MYSQLHOST'] ?? 'localhost';
+        $dbUSER = $_ENV['MYSQLUSER'] ?? 'root';
+        $dbPASSWORD = $_ENV['MYSQLPASSWORD'] ?? '';
+        $dbPORT = $_ENV['MYSQLPORT'] ?? 3306;
+        $dbname = $_ENV['MYSQLDATABASE'] ?? 'skyline';
+        $dsn = "mysql:host={$dbHOST};dbname={$dbname}";
+        $pdo = new PDO($dsn, $dbUSER, $dbPASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Prepare SQL statement to fetch record by ID
