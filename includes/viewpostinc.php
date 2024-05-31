@@ -1,5 +1,5 @@
 <?php
-require_once "includes/dbhinc.php"; // Include your database connection file
+require_once "dbhinc.php"; // Include your database connection file
 
 // Define an array to hold the data
 $posts = array();
